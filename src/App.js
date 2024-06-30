@@ -21,15 +21,13 @@ function App() {
   }, [])
     async function apicall() {
     const response = await axios.get(`https://api.nytimes.com/svc/topstories/v2/home.json?api-key=${process.env.REACT_APP_NEWS_API_KEY}`);
-    // const response = await axios.get('https://newsapi.org/v2/top-headlines?country=us&apiKey=383f9faaa673424aa42873751fcef627');
-    // console.log("new api response ",response2)
-    console.log("new api response ",response)
-    console.log("new api response images",response.data.results[0].multimedia[0].url)
+    // console.log("new api response ",response)
+    // console.log("new api response images",response.data.results[0].multimedia[0].url)
 
 
     // console.log(response.data.results)
     setArticles(response.data.results)
-    console.log('api just called')
+    // console.log('api just called')
   }
   async function newcategory(e) {
     // console.log('value of category is', e.target.id)
