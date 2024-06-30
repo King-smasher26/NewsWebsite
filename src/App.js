@@ -19,7 +19,7 @@ function App() {
     apicall()
 
   }, [])
-    async function apicall() {
+  async function apicall() {
     const response = await axios.get(`https://api.nytimes.com/svc/topstories/v2/home.json?api-key=${process.env.REACT_APP_NEWS_API_KEY}`);
     // console.log("new api response ",response)
     // console.log("new api response images",response.data.results[0].multimedia[0].url)
@@ -55,19 +55,19 @@ function App() {
         <div className='App'>
           <nav>
 
-          <div className='website-icon' ><a href='/'>NewYork Times</a></div>
-          <div className='nav-right-side'>
+            <div className='website-icon' ><a href='/'>NewYork Times</a></div>
+            <div className='nav-right-side'>
 
-          <button className='fav-button' onClick={() => { navigate('/favourites') }}>FAVOURITES</button>
-          <DropdownButton id="dropdown-basic-button" title='select category'>
-            <Dropdown.Item id='politics' onClick={(e) => { newcategory(e) }}>POLITICS</Dropdown.Item>
-            <Dropdown.Item id='Technology' onClick={(e) => { newcategory(e) }}>TECHNOLOGY</Dropdown.Item>
-            <Dropdown.Item id='sports' onClick={(e) => { newcategory(e) }}>SPORTS</Dropdown.Item>
-          </DropdownButton>
-          </div>
+              <button className='fav-button' onClick={() => { navigate('/favourites') }}>FAVOURITES</button>
+              <DropdownButton id="dropdown-basic-button" title='select category'>
+                <Dropdown.Item id='politics' onClick={(e) => { newcategory(e) }}>POLITICS</Dropdown.Item>
+                <Dropdown.Item id='Technology' onClick={(e) => { newcategory(e) }}>TECHNOLOGY</Dropdown.Item>
+                <Dropdown.Item id='sports' onClick={(e) => { newcategory(e) }}>SPORTS</Dropdown.Item>
+              </DropdownButton>
+            </div>
           </nav>
           <input className='search-input' placeholder='Search...' type='text' onChange={(e) => setSearch(e.target.value)} />
-          <ArticleList search={search} articles={currentPosts} allArticles={articles}/>
+          <ArticleList search={search} articles={currentPosts} allArticles={articles} />
           <footer>
             <Pagination totalPosts={articles.length} postsPerPage={postsPerPage} setCurrentPage={setCurrentPage} currentPage={currentPage} />
           </footer>
@@ -75,6 +75,10 @@ function App() {
       } />
       <Route path='/favourites' element={
         <div className='App'>
+          <nav>
+
+            <div className='website-icon' ><a href='/'>NewYork Times</a></div>
+          </nav>
 
           <FavoriteNews articles={favouriteItems} />
         </div>
