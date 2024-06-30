@@ -1,0 +1,18 @@
+.fav-heading{
+    color: white;
+    font-size: 3rem;
+}
+@media screen and (max-width:500px) {
+    
+    .fav-heading{
+        color: white;
+        font-size: 2.5rem;
+    }    
+}
+@media screen and (max-width:350px) {
+    
+    .fav-heading{
+        color: white;
+        font-size: 2rem;
+    }    
+}

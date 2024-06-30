@@ -1,0 +1,10 @@
+.Article-List {
+    /* border: 2px solid red;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly; */
+    display: grid;
+
+    grid-template-columns: auto auto auto auto;
+}

@@ -1,0 +1,60 @@
+.detailed-card{
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 100vh; */
+}
+
+.article-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.article-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.article-author,
+.article-date {
+    font-size: 14px;
+    color: #777;
+}
+
+.article-image {
+    width: 100%;
+    height: auto;
+    margin: 20px 0;
+    border-radius: 8px;
+}
+
+.article-description {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+}
+
+.article-source {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 15px;
+    background-color: #007BFF;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.article-source:hover {
+    background-color: #0056b3;
+}
