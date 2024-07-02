@@ -1,38 +1,40 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import ArticleCard from './ArticleCard'
 import './ArticleCard.css'
 import './ArticleList.css'
-import { json } from 'react-router-dom'
+
 const ArticleList = (props) => {
-    // console.log("props are",props.articles)    
     return (
         <div className='content-wrapper'>
-            {
-                props.articles&&props.articles.filter((obj)=>{
-                    if(props.search==''){
-                        return obj
+            {props.articles && props.articles
+                .filter((obj) => {
+                    if (props.search === '') {
+                        return true;
                     }
-                    else if(obj.title.toLowerCase().includes(props.search.toLowerCase())){
-                        return obj
-                    }
-                }).map((obj,index)=>{
-                    return <ArticleCard
-                    key={index}
-            author={obj.byline} 
-            content={obj.content}
-            description={obj.abstract}
-            source={obj.source}
-            title={obj.title}
-            url={obj.url}
-            date={obj.published_date}
-            img={obj.multimedia[0].url}  
-            favouriteCart={props.favouriteCart}
-            />
+                    return obj.title.toLowerCase().includes(props.search.toLowerCase());
+                })
+                .map((obj, index) => {
+                    // Check if multimedia exists and has at least one item
+                    const imgUrl = obj.multimedia && obj.multimedia.length > 0 ? obj.multimedia[0].url : '';
+
+                    return (
+                        <ArticleCard
+                            key={index}
+                            author={obj.byline}
+                            content={obj.content}
+                            description={obj.abstract}
+                            source={obj.source}
+                            title={obj.title}
+                            url={obj.url}
+                            date={obj.published_date}
+                            img={imgUrl}
+                            favouriteCart={props.favouriteCart}
+                        />
+                    );
                 })
             }
-
-    </div>
-)
+        </div>
+    );
 }
 
 export default ArticleList

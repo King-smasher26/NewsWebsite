@@ -22,14 +22,35 @@ function App() {
     fetchArticles();
   }, []);
 
+  // async function fetchArticles(category = 'home') {
+  //   try {
+  //     const response = await axios.get(`https://api.nytimes.com/svc/topstories/v2/${category}.json?api-key=${process.env.REACT_APP_NEWS_API_KEY}`);
+  //     setArticles(response.data.results);
+  //     setNewsCategory(category.charAt(0).toUpperCase() + category.slice(1));
+  //     setCurrentPage(1);
+  //   } catch (error) {
+  //     console.error('Error fetching articles:', error);
+  //   }
+  // }
+
   async function fetchArticles(category = 'home') {
     try {
+      console.log('Fetching articles for category:', category);
       const response = await axios.get(`https://api.nytimes.com/svc/topstories/v2/${category}.json?api-key=${process.env.REACT_APP_NEWS_API_KEY}`);
-      setArticles(response.data.results);
-      setNewsCategory(category.charAt(0).toUpperCase() + category.slice(1));
-      setCurrentPage(1);
+      console.log('API Response:', response.data);
+      
+      if (response.data && Array.isArray(response.data.results)) {
+        console.log('Number of articles:', response.data.results.length);
+        setArticles(response.data.results);
+        setNewsCategory(category.charAt(0).toUpperCase() + category.slice(1));
+        setCurrentPage(1);
+      } else {
+        console.error('Invalid response structure for category:', category);
+        setArticles([]);
+      }
     } catch (error) {
       console.error('Error fetching articles:', error);
+      setArticles([]);
     }
   }
 
