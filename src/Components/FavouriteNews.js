@@ -13,7 +13,7 @@ const FavoriteNews = (props) => {
     },[])
     return (
         <>
-        <div className='fav-heading'>Favourite News</div>
+        {/* <div className='fav-heading'>Favourite News</div> */}
         {items.length!=0?
         <div className='content-wrapper'>
         {items.map(obj=>{

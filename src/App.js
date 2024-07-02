@@ -49,37 +49,70 @@ function App() {
             <title>New York Times Top Stories | {newsCategory}</title>
             <meta name="description" content={`Read the latest ${newsCategory} news from the New York Times. Stay informed with our curated selection of top stories.`} />
             <meta name="keywords" content={`New York Times, news, ${newsCategory.toLowerCase()}, top stories`} />
+            <link rel="canonical" href="https://your-domain.com/" />
+            <script type="application/ld+json">
+              {`
+                {
+                  "@context": "http://schema.org",
+                  "@type": "NewsArticle",
+                  "headline": "New York Times Top Stories",
+                  "description": "Latest news and top stories from the New York Times",
+                  "publisher": {
+                    "@type": "Organization",
+                    "name": "Your Website Name",
+                    "logo": {
+                      "@type": "ImageObject",
+                      "url": "https://your-domain.com/logo.png"
+                    }
+                  }
+                }
+              `}
+            </script>
           </Helmet>
           <header>
-            <nav>
-              <h1 className='website-icon'><a href='/' title="New York Times Home">New York Times</a></h1>
-              <div className='nav-right-side'>
-                <button className='fav-button' onClick={() => navigate('/favourites')} aria-label="View Favorites">Favorites</button>
-                <DropdownButton id="category-dropdown" title='Select Category'>
-                  {['Politics', 'Technology', 'Sports'].map(category => (
-                    <Dropdown.Item key={category.toLowerCase()} onClick={() => fetchArticles(category.toLowerCase())}>{category}</Dropdown.Item>
-                  ))}
-                </DropdownButton>
-              </div>
-            </nav>
-          </header>
+  <nav>
+    <div className="website-icon">
+      <a href="/" title="New York Times Home">New York Times</a>
+    </div>
+    <div className="nav-right-side">
+      <button className="fav-button" onClick={() => navigate('/favourites')} aria-label="View Favorites">
+        Favorites
+      </button>
+      <DropdownButton id="category-dropdown" title="Select Category" aria-label="Select news category">
+        {['Politics', 'Technology', 'Sports'].map(category => (
+          <Dropdown.Item key={category.toLowerCase()} onClick={() => fetchArticles(category.toLowerCase())}>
+            {category}
+          </Dropdown.Item>
+        ))}
+      </DropdownButton>
+    </div>
+  </nav>
+</header>
           <main>
-            <input 
-              className='search-input' 
-              placeholder='Search articles...' 
-              type='text' 
-              onChange={(e) => setSearch(e.target.value)}
-              aria-label="Search articles"
-            />
-            <ArticleList search={search} articles={currentPosts} allArticles={articles} addToFavorites={addToFavorites} />
+            <h2 style={{color:"white"}}>{newsCategory} News</h2>
+            <section aria-label="Search articles">
+              <label htmlFor="search-input" className="sr-only">Search articles</label>
+              <input 
+                id="search-input"
+                className='search-input' 
+                placeholder='Search articles...' 
+                type='text' 
+                onChange={(e) => setSearch(e.target.value)}
+              />
+            </section>
+            <section aria-label="Article List">
+              <ArticleList search={search} articles={currentPosts} allArticles={articles} addToFavorites={addToFavorites} />
+            </section>
           </main>
           <footer>
-            <Pagination 
-              totalPosts={articles.length} 
-              postsPerPage={postsPerPage} 
-              setCurrentPage={setCurrentPage} 
-              currentPage={currentPage} 
-            />
+            <nav aria-label="Pagination">
+              <Pagination 
+                totalPosts={articles.length} 
+                postsPerPage={postsPerPage} 
+                setCurrentPage={setCurrentPage} 
+                currentPage={currentPage} 
+              />
+            </nav>
           </footer>
         </div>
       } />
@@ -91,11 +124,12 @@ function App() {
             <meta name="robots" content="noindex, nofollow" />
           </Helmet>
           <header>
-            <nav>
+            <nav aria-label="Main Navigation">
               <h1 className='website-icon'><a href='/' title="Return to Home">New York Times</a></h1>
             </nav>
           </header>
           <main>
+            <h2 style={{color:"white"}}>Your Favorite Articles</h2>
             <FavoriteNews articles={favouriteItems} />
           </main>
         </div>
